@@ -1,0 +1,5 @@
+node_modules/
+database/library.db
+database/library.db-*
+docs/jest-results.json
+.DS_Store

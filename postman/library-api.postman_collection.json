@@ -1,0 +1,741 @@
+{
+  "info": {
+    "name": "Library Management System API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000/api"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health & Dashboard",
+      "item": [
+        {
+          "name": "Health check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health"
+              ],
+              "query": []
+            }
+          }
+        },
+        {
+          "name": "Dashboard statistics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/dashboard",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "dashboard"
+              ],
+              "query": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Books",
+      "item": [
+        {
+          "name": "List all books",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/books",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "books"
+              ],
+              "query": []
+            }
+          }
+        },
+        {
+          "name": "Search books",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/books?search=silber",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "books"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "silber"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Only available books",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/books?available=true",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "books"
+              ],
+              "query": [
+                {
+                  "key": "available",
+                  "value": "true"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get book 1",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/books/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "books",
+                "1"
+              ],
+              "query": []
+            }
+          }
+        },
+        {
+          "name": "Add book (201)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/books",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "books"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Deep Work\",\n  \"author\": \"Cal Newport\",\n  \"isbn\": \"978-1-4555-8669-1\",\n  \"category\": \"Self-Help\",\n  \"publicationYear\": 2016\n}"
+            }
+          }
+        },
+        {
+          "name": "Add book with duplicate ISBN (409)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/books",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "books"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Deep Work\",\n  \"author\": \"Cal Newport\",\n  \"isbn\": \"9780132350884\",\n  \"category\": \"Self-Help\",\n  \"publicationYear\": 2016\n}"
+            }
+          }
+        },
+        {
+          "name": "Add invalid book (400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/books",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "books"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Edit book 1",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/books/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "books",
+                "1"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Clean Code (2nd copy)\",\n  \"author\": \"Robert C. Martin\",\n  \"isbn\": \"9780132350884\",\n  \"category\": \"Programming\",\n  \"publicationYear\": 2008\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete book 11 (204; try after adding)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/books/11",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "books",
+                "11"
+              ],
+              "query": []
+            }
+          }
+        },
+        {
+          "name": "Delete book on loan (409)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/books/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "books",
+                "2"
+              ],
+              "query": []
+            }
+          }
+        },
+        {
+          "name": "Invalid id (400)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/books/abc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "books",
+                "abc"
+              ],
+              "query": []
+            }
+          }
+        },
+        {
+          "name": "Unknown id (404)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/books/999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "books",
+                "999"
+              ],
+              "query": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "item": [
+        {
+          "name": "List all members",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/members",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "members"
+              ],
+              "query": []
+            }
+          }
+        },
+        {
+          "name": "Search members",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/members?search=priya",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "members"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "priya"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get member 1",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/members/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "members",
+                "1"
+              ],
+              "query": []
+            }
+          }
+        },
+        {
+          "name": "Add member (201)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/members",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "members"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Meera Das\",\n  \"email\": \"meera.das@example.com\",\n  \"phone\": \"9812345678\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Add invalid member (400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/members",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "members"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"email\": \"bad\",\n  \"phone\": \"1\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Edit member 6",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/members/6",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "members",
+                "6"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Sneha Patil\",\n  \"email\": \"sneha.patil@example.com\",\n  \"phone\": \"9611223344\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete member 7 (204; try after adding)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/members/7",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "members",
+                "7"
+              ],
+              "query": []
+            }
+          }
+        },
+        {
+          "name": "Delete member with history (409)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/members/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "members",
+                "1"
+              ],
+              "query": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Borrowings",
+      "item": [
+        {
+          "name": "List all borrowings",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/borrowings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "borrowings"
+              ],
+              "query": []
+            }
+          }
+        },
+        {
+          "name": "Active borrowings",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/borrowings?status=active",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "borrowings"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "active"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Overdue borrowings",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/borrowings?status=overdue",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "borrowings"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "overdue"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Returned borrowings",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/borrowings?status=returned",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "borrowings"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "returned"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get borrowing 4",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/borrowings/4",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "borrowings",
+                "4"
+              ],
+              "query": []
+            }
+          }
+        },
+        {
+          "name": "Issue book 1 to member 2 (201)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/borrowings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "borrowings"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bookId\": 1,\n  \"memberId\": 2\n}"
+            }
+          }
+        },
+        {
+          "name": "Issue unavailable book (409)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/borrowings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "borrowings"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bookId\": 2,\n  \"memberId\": 2\n}"
+            }
+          }
+        },
+        {
+          "name": "Issue unknown book (404)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/borrowings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "borrowings"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bookId\": 999,\n  \"memberId\": 2\n}"
+            }
+          }
+        },
+        {
+          "name": "Return borrowing 4 (200)",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/borrowings/4/return",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "borrowings",
+                "4",
+                "return"
+              ],
+              "query": []
+            }
+          }
+        },
+        {
+          "name": "Return again (409)",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/borrowings/4/return",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "borrowings",
+                "4",
+                "return"
+              ],
+              "query": []
+            }
+          }
+        },
+        {
+          "name": "Extend due date",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/borrowings/5/due-date",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "borrowings",
+                "5",
+                "due-date"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dueDate\": \"2026-11-30\"\n}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+PASS E01 dashboard shows 6 stat cards
+PASS E01 dashboard total books = 10
+PASS E02 books list shows 10 rows
+PASS E03 search "silber" returns 2 books
+PASS E04 filter On loan returns 3 books
+PASS E05 empty add-book form shows client validation errors
+PASS E06 duplicate ISBN shows server error on ISBN field
+PASS E07 new book appears in list
+PASS E07 toast confirms add
+PASS E08 edit dialog is pre-filled
+PASS E08 edited title shown
+PASS E09 deleted book removed from list
+PASS E10 deleting a book on loan shows error in dialog
+PASS E11 members list shows 6 rows
+PASS E12 invalid member shows email and phone errors
+PASS E13 new member appears
+PASS E14 member search works
+PASS E15 borrowings list shows 6 records
+PASS E15 overdue pill is shown
+PASS E16 overdue filter shows overdue loans only
+PASS E17 issue without selection shows errors
+PASS E18 issued loan appears as Borrowed
+PASS E19 issued book now shows On loan on Books page
+PASS E20 returned loan shows Returned
+PASS E21 returned book is Available again
+PASS E22 dashboard counts: 7 available, 3 active
+PASS E23 no horizontal page scroll on mobile
+PASS E24 no JavaScript errors (expected 409 responses ignored)
+console errors: ['Failed to load resource: the server responded with a status of 409 (Conflict)', 'Failed to load resource: the server responded with a status of 409 (Conflict)']
+FAILED: []
